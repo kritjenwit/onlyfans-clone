@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --no-color 2>output.txt",
     "watch": "tsc -w",
     "dev": "nodemon dist/server.js"
   },
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
-    "sequelize-cli": "^6.5.2"
+    "sequelize-cli": "^6.5.2",
+    "ts-jest": "^29.0.3"
   }
 }

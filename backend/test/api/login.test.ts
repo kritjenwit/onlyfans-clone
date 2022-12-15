@@ -8,13 +8,13 @@ async function ping() {
   return response.data;
 }
 
-async function apiLoginWithEmail(email, password) {
+async function apiLoginWithEmail(email: string, password: string) {
   let apiUrl = `${BASE_URL}/authen/email/login`;
   let response = await axios.post(apiUrl, { email, password });
   return response.data;
 }
 
-async function apiLoginWithGmail(email) {
+async function apiLoginWithGmail(email: string) {
   let apiUrl = `${BASE_URL}/authen/gmail/login`;
   let response = await axios.post(apiUrl, { email });
   return response.data;

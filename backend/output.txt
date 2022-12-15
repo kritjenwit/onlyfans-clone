@@ -1,0 +1,28 @@
+FAIL test/unit/classes/user.test.ts
+  Test User classes
+    √ Test constructor (2 ms)
+    × Test function loginEmail() (85 ms)
+
+  ● Test User classes › Test function loginEmail()
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1101
+    Received: 500
+
+      27 |     };
+      28 |     result = await user.loginEmail(validParam);
+    > 29 |     expect(result.dno).toBe(1101);
+         |                        ^
+      30 |
+      31 |     // Test if funtion return failed code
+      32 |     invalidParam = {
+
+      at test/unit/classes/user.test.ts:29:24
+      at fulfilled (test/unit/classes/user.test.ts:5:58)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        2.014 s, estimated 3 s
+Ran all test suites matching /user.test.ts/i.
