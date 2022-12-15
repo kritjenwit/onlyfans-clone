@@ -22,5 +22,8 @@
     "pg": "^8.8.0",
     "sequelize": "^6.27.0",
     "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
   }
 }
