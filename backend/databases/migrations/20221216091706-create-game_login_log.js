@@ -9,63 +9,37 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("account", {
+    await queryInterface.createTable("game_login_log", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      app_id: {
+      idx: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
-      email: {
+      ip_address: {
+        allowNull: true,
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      type: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       platform: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      isban: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-      lastlogin: {
-        type: Sequelize.DATE,
         allowNull: true,
-      },
-      regip: {
         type: Sequelize.STRING,
-        allowNull: true,
       },
-      idx: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
+      country: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      code: {
+        allowNull: true,
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    });
-
-    await queryInterface.addIndex("account", ["app_id", "email", "type"], {
-      unique: true,
     });
   },
 
@@ -76,6 +50,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable("account");
+    await queryInterface.dropTable("game_login_log");
   },
 };
