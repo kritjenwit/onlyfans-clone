@@ -70,7 +70,7 @@ module.exports = {
         allowNull: false,
         unique: true,
         validate: {
-          min: 3000000,
+          min: 3_000_000,
         },
       },
       created_at: {
@@ -169,7 +169,7 @@ module.exports = {
         defaultValue: 0,
         validate: {
           min: 0,
-          max: 10_000_000,
+          max: 99_999_999,
           isInt: true,
         },
       },
@@ -202,5 +202,6 @@ module.exports = {
      */
     await queryInterface.dropTable("account");
     await queryInterface.dropTable("user_profile");
+    await queryInterface.dropTable("user_wallet");
   },
 };

@@ -29,6 +29,15 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.bulkInsert("apps", [
+      {
+        id: 1,
+        name: "Onlyfans",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ]);
   },
 
   async down(queryInterface, Sequelize) {
@@ -38,6 +47,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
+    await queryInterface.bulkDelete("apps", null, {});
     await queryInterface.dropTable("apps");
   },
 };
