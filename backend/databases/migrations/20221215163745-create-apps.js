@@ -47,7 +47,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.bulkDelete("apps", null, {});
+    // await queryInterface.bulkDelete("apps", null, {});
     await queryInterface.dropTable("apps");
   },
 };

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3000";
 
 async function apiRegisterWithEmail(email: string, password: string) {
   let apiUrl = `${BASE_URL}/authen/email/login`;

@@ -1,7 +1,46 @@
+FAIL test/api/login.test.ts
+  ● Test suite failed to run
+
+    [96mtest/api/login.test.ts[0m:[93m6[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'BASE_URL'.
+
+    [7m6[0m   let apiUrl = `${BASE_URL}/ping`;
+    [7m [0m [91m                  ~~~~~~~~[0m
+    [96mtest/api/login.test.ts[0m:[93m12[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'BASE_URL'.
+
+    [7m12[0m   let apiUrl = `${BASE_URL}/authen/email/login`;
+    [7m  [0m [91m                  ~~~~~~~~[0m
+    [96mtest/api/login.test.ts[0m:[93m18[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'BASE_URL'.
+
+    [7m18[0m   let apiUrl = `${BASE_URL}/authen/gmail/login`;
+    [7m  [0m [91m                  ~~~~~~~~[0m
+
+FAIL test/api/register.test.ts
+  ● Test suite failed to run
+
+    [96mtest/api/register.test.ts[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'axios'.
+
+    [7m5[0m   let response = await axios.post(apiUrl, { email, password });
+    [7m [0m [91m                       ~~~~~[0m
+    [96mtest/api/register.test.ts[0m:[93m11[0m:[93m26[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ping'.
+
+    [7m11[0m     let response = await ping();
+    [7m  [0m [91m                         ~~~~[0m
+
 FAIL test/unit/classes/user.test.ts
-  Test User classes
-    √ Test constructor (2 ms)
-    × Test function loginEmail() (85 ms)
+  ● Console
+
+    console.log
+      [
+        `Executing (default): call proc_account('{"process_type":1,"app_id":1,"type":"i1","email":"admin@admin.com","password":"123456"}'::json, 0::integer,''::character varying, ''::character varying)`,
+        {
+          plain: false,
+          raw: true,
+          logging: [Function (anonymous)],
+          type: 'SELECT'
+        }
+      ]
+
+      at Object.<anonymous>.exports.sequelize.sequelize_1.Sequelize.Object.assign.logging (src/databases/index.ts:16:69)
 
   ● Test User classes › Test function loginEmail()
 
@@ -21,8 +60,9 @@ FAIL test/unit/classes/user.test.ts
       at test/unit/classes/user.test.ts:29:24
       at fulfilled (test/unit/classes/user.test.ts:5:58)
 
-Test Suites: 1 failed, 1 total
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+Test Suites: 3 failed, 3 total
 Tests:       1 failed, 1 passed, 2 total
 Snapshots:   0 total
-Time:        2.014 s, estimated 3 s
-Ran all test suites matching /user.test.ts/i.
+Time:        2.906 s, estimated 4 s
+Ran all test suites.

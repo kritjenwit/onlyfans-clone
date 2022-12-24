@@ -1,5 +1,12 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
+const procAccount = fs.readFileSync(
+  path.join(__dirname, "../sql/proc_account.sql"),
+  "utf8"
+);
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,21 +16,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("idx_list", {
-      idx: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        validate: {
-          min: 3_000_000,
-        },
-      },
-    });
-
-    await queryInterface.bulkInsert("idx_list", [
-      {
-        idx: 3_000_000,
-      },
-    ]);
+    await queryInterface.sequelize.query(procAccount);
   },
 
   async down(queryInterface, Sequelize) {
@@ -33,7 +26,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    // await queryInterface.bulkDelete("idx_list".null, {});
-    await queryInterface.dropTable("idx_list");
+    await queryInterface.sequelize.query(`DROP PROCEDURE proc_account`);
   },
 };
