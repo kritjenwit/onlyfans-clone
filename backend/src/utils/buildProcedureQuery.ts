@@ -9,16 +9,18 @@ interface ProcedureObject {
   [key: string]: string | number | boolean;
 }
 
-interface BuildProcedureFunction {
-  procedureName: string;
-  values: ProcedureObject;
-}
-
 export const buildProcedureQuery = (
   procedureName: string,
   values: any
-): string => {
+): string  => {
   let jsonValues = JSON.stringify(values);
+  if (procedureName == "") {
+    return '';
+  }
+  if (typeof values !== "object" || Object.keys(values).length <= 0) {
+    return '';
+  }
+
   return `call ${procedureName}('${jsonValues}'::json, 0::integer,''::character varying, ''::character varying)`;
 };
 
@@ -37,6 +39,8 @@ export const buildProcedureQueryByType = (
   } else if (type == REGISTER_WITH.EMAIL) {
     procName = PROC_ACCOUNT.NAME;
     procType = PROC_ACCOUNT.TYPE.REGISTER;
+  } else {
+    return "";
   }
 
   let jsonValues = {
@@ -44,10 +48,15 @@ export const buildProcedureQueryByType = (
     ...values,
   };
 
-  return buildProcedureQuery(procName, jsonValues);
+  return buildProcedureQuery(procName, jsonValues)
 };
 
-export const beautifyDBResult = (result: ProcJsonResult) => {
+/**
+ *
+ * @param {ProcJsonResult} result Result from Database query
+ * @returns {Object} beautified result
+ */
+export const beautifyDBResult = (result: ProcJsonResult): object => {
   return {
     code: result.dno,
     message: result.proc_message,

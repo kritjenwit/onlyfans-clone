@@ -16,6 +16,9 @@ export const RESPONSE = {
           PASSWORD_AND_CONFIRM_PASSWORD:
             "Password and confirm password is missmatch",
         },
+        EMPTY: {
+          SQL: "SQL String is empty",
+        }
       },
     },
     500: {

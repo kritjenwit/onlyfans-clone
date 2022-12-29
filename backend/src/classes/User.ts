@@ -30,6 +30,7 @@ export interface RegisterEmailInterface {
 }
 
 const code500 = RESPONSE.NUMBER_CODE[500];
+const code400 = RESPONSE.NUMBER_CODE[400];
 
 export default class User {
   sql: string;
@@ -41,6 +42,14 @@ export default class User {
   }
 
   async __process(): Promise<ProcJsonResult> {
+    if (this.sql === "") {
+      return {
+        dno: code400.CODE,
+        proc_message: code400.MESSAGE_LIST.EMPTY.SQL,
+        datajson: "[]",
+      };
+    }
+
     try {
       let dbResult = await sequelize.query<ProcJsonResult>(this.sql, {
         type: this.type,
@@ -68,15 +77,5 @@ export default class User {
   async registerEmail(data: RegisterEmailInterface) {
     this.sql = buildProcedureQueryByType(REGISTER_WITH.EMAIL, data);
     return this.__process();
-  }
-
-  async __forTestingDeleteAllTestData() {
-    this.type = QueryTypes.DELETE;
-
-    this.sql = "DELETE FROM accounts where 1=1";
-    this.__process();
-
-    this.sql = "DELETE FROM game_login_log where 1=1";
-    this.__process();
   }
 }

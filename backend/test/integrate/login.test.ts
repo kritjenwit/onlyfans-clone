@@ -40,7 +40,7 @@ describe("Test Login API", () => {
   });
 
   it("Should login with email and password successfully", async () => {
-    let email = "admin@admin.com";
+    let email = "admin179759@admin.com";
     let password = "123456";
     let response = await apiLoginWithEmail(baseUrl, email, password);
     expect(response.code).toBe(1101);

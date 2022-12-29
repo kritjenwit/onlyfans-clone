@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest --detectOpenHandles --collect-coverage",
     "watch": "tsc -w",
     "build": "tsc --build",
     "dev": "nodemon dist/server.js"
