@@ -12,8 +12,9 @@ const postgresConfig = {
 export const sequelize = new Sequelize({
   dialect: "postgres",
   ...postgresConfig,
-  logging:
-    env.ENVIRONMENT === "development" ? false : (...msg) => console.log(msg),
+  logging: false,
+  // logging:
+  //   env.ENVIRONMENT === "development" ? false : (...msg) => console.log(msg),
   pool: {
     min: 20,
     max: 20,

@@ -73,6 +73,10 @@ module.exports = {
           min: 3_000_000,
         },
       },
+      lastlogin: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -81,7 +85,7 @@ module.exports = {
         },
       },
       updated_at: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
         validate: {
           isAfter: new Date(),

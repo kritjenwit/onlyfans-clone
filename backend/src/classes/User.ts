@@ -33,15 +33,17 @@ const code500 = RESPONSE.NUMBER_CODE[500];
 
 export default class User {
   sql: string;
+  type: any;
 
   constructor() {
     this.sql = "";
+    this.type = QueryTypes.SELECT;
   }
 
   async __process(): Promise<ProcJsonResult> {
     try {
       let dbResult = await sequelize.query<ProcJsonResult>(this.sql, {
-        type: QueryTypes.SELECT,
+        type: this.type,
       });
       return dbResult[0];
     } catch (error) {
@@ -66,5 +68,15 @@ export default class User {
   async registerEmail(data: RegisterEmailInterface) {
     this.sql = buildProcedureQueryByType(REGISTER_WITH.EMAIL, data);
     return this.__process();
+  }
+
+  async __forTestingDeleteAllTestData() {
+    this.type = QueryTypes.DELETE;
+
+    this.sql = "DELETE FROM accounts where 1=1";
+    this.__process();
+
+    this.sql = "DELETE FROM game_login_log where 1=1";
+    this.__process();
   }
 }

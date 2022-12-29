@@ -1,33 +1,48 @@
-FAIL test/api/login.test.ts
-  ● Test suite failed to run
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
 
-    [96mtest/api/login.test.ts[0m:[93m6[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'BASE_URL'.
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
 
-    [7m6[0m   let apiUrl = `${BASE_URL}/ping`;
-    [7m [0m [91m                  ~~~~~~~~[0m
-    [96mtest/api/login.test.ts[0m:[93m12[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'BASE_URL'.
+Node.js v18.12.1
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
 
-    [7m12[0m   let apiUrl = `${BASE_URL}/authen/email/login`;
-    [7m  [0m [91m                  ~~~~~~~~[0m
-    [96mtest/api/login.test.ts[0m:[93m18[0m:[93m19[0m - [91merror[0m[90m TS2304: [0mCannot find name 'BASE_URL'.
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
 
-    [7m18[0m   let apiUrl = `${BASE_URL}/authen/gmail/login`;
-    [7m  [0m [91m                  ~~~~~~~~[0m
-
-FAIL test/api/register.test.ts
-  ● Test suite failed to run
-
-    [96mtest/api/register.test.ts[0m:[93m5[0m:[93m24[0m - [91merror[0m[90m TS2304: [0mCannot find name 'axios'.
-
-    [7m5[0m   let response = await axios.post(apiUrl, { email, password });
-    [7m [0m [91m                       ~~~~~[0m
-    [96mtest/api/register.test.ts[0m:[93m11[0m:[93m26[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ping'.
-
-    [7m11[0m     let response = await ping();
-    [7m  [0m [91m                         ~~~~[0m
-
+Node.js v18.12.1
 FAIL test/unit/classes/user.test.ts
   ● Console
+
+    console.log
+      [
+        `Executing (default): call proc_account('{"process_type":2,"app_id":1,"platform":"web","type":"i1","ip_address":"127.0.0.1","email":"admin@admin.com","password":"123456"}'::json, 0::integer,''::character varying, ''::character varying)`,
+        {
+          plain: false,
+          raw: true,
+          logging: [Function (anonymous)],
+          type: 'SELECT'
+        }
+      ]
+
+      at Object.<anonymous>.exports.sequelize.sequelize_1.Sequelize.Object.assign.logging (src/databases/index.ts:16:69)
 
     console.log
       [
@@ -42,27 +57,169 @@ FAIL test/unit/classes/user.test.ts
 
       at Object.<anonymous>.exports.sequelize.sequelize_1.Sequelize.Object.assign.logging (src/databases/index.ts:16:69)
 
-  ● Test User classes › Test function loginEmail()
+    console.log
+      [
+        `Executing (default): call proc_account('{"process_type":1,"app_id":1,"type":"i1","email":"","password":"123456"}'::json, 0::integer,''::character varying, ''::character varying)`,
+        {
+          plain: false,
+          raw: true,
+          logging: [Function (anonymous)],
+          type: 'SELECT'
+        }
+      ]
+
+      at Object.<anonymous>.exports.sequelize.sequelize_1.Sequelize.Object.assign.logging (src/databases/index.ts:16:69)
+
+    console.log
+      [
+        `Executing (default): call proc_account('{"process_type":1,"app_id":0,"type":"i1","email":"admin@admin.com","password":"123456"}'::json, 0::integer,''::character varying, ''::character varying)`,
+        {
+          plain: false,
+          raw: true,
+          logging: [Function (anonymous)],
+          type: 'SELECT'
+        }
+      ]
+
+      at Object.<anonymous>.exports.sequelize.sequelize_1.Sequelize.Object.assign.logging (src/databases/index.ts:16:69)
+
+    console.log
+      [
+        `Executing (default): call proc_account('{"process_type":1,"app_id":1,"type":"i1","email":"admin@admin.com","password":""}'::json, 0::integer,''::character varying, ''::character varying)`,
+        {
+          plain: false,
+          raw: true,
+          logging: [Function (anonymous)],
+          type: 'SELECT'
+        }
+      ]
+
+      at Object.<anonymous>.exports.sequelize.sequelize_1.Sequelize.Object.assign.logging (src/databases/index.ts:16:69)
+
+  ● Test User classes › Test function registerEmail()
 
     expect(received).toBe(expected) // Object.is equality
 
     Expected: 1101
-    Received: 500
+    Received: 502
 
-      27 |     };
-      28 |     result = await user.loginEmail(validParam);
-    > 29 |     expect(result.dno).toBe(1101);
+      25 |       password: "123456",
+      26 |     });
+    > 27 |     expect(result.dno).toBe(1101);
          |                        ^
-      30 |
-      31 |     // Test if funtion return failed code
-      32 |     invalidParam = {
+      28 |   });
+      29 |
+      30 |   it("Test function loginEmail()", async () => {
 
-      at test/unit/classes/user.test.ts:29:24
-      at fulfilled (test/unit/classes/user.test.ts:5:58)
+      at Object.<anonymous> (test/unit/classes/user.test.ts:27:24)
+
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
+
+Node.js v18.12.1
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
+
+Node.js v18.12.1
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
+
+Node.js v18.12.1
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
+
+Node.js v18.12.1
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
+
+Node.js v18.12.1
+node:internal/child_process/serialization:159
+    const string = JSONStringify(message) + '\n';
+                   ^
+
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Object'
+    |     property 'socket' -> object with constructor 'Object'
+    --- property '_httpMessage' closes the circle
+    at stringify (<anonymous>)
+    at writeChannelMessage (node:internal/child_process/serialization:159:20)
+    at process.target._send (node:internal/child_process:838:17)
+    at process.target.send (node:internal/child_process:738:19)
+    at reportSuccess (F:\code\nodejs\onlyfans-clone\backend\node_modules\.pnpm\jest-worker@29.3.1\node_modules\jest-worker\build\workers\processChild.js:63:11)
+
+Node.js v18.12.1
+FAIL test/api/register.test.ts
+  ● Test suite failed to run
+
+    Jest worker encountered 4 child process exceptions, exceeding retry limit
+
+      at ChildProcessWorker.initialize (node_modules/.pnpm/jest-worker@29.3.1/node_modules/jest-worker/build/workers/ChildProcessWorker.js:181:21)
+
+FAIL test/api/login.test.ts
+  ● Test suite failed to run
+
+    Jest worker encountered 4 child process exceptions, exceeding retry limit
+
+      at ChildProcessWorker.initialize (node_modules/.pnpm/jest-worker@29.3.1/node_modules/jest-worker/build/workers/ChildProcessWorker.js:181:21)
 
 A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
 Test Suites: 3 failed, 3 total
-Tests:       1 failed, 1 passed, 2 total
+Tests:       1 failed, 2 passed, 3 total
 Snapshots:   0 total
-Time:        2.906 s, estimated 4 s
+Time:        8.434 s
 Ran all test suites.

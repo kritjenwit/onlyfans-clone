@@ -87,7 +87,7 @@ AS $procedure$
 				    from account ac 
 				    where ac.app_id = p_app_id
 				    and ac.email = p_email
-				    and ac.passwd = md5(p_password)
+				    and ac.password = md5(p_password)
 				    and ac."type" = p_type
 					into p_idx;
 				   
@@ -100,13 +100,12 @@ AS $procedure$
 				  
 					insert into game_login_log 
 					(
-					    "email", "id_wc", 
 					    "ip_address", "platform", 
-					    "code", "country", "idx"
+					    "code", "country", 
+						"idx"
 					) 
 					values 
 					(
-					    p_email, p_id_wc,
 					    p_ip_address,'Web', 
 					    p_country_code, p_country_name,
 					   	p_idx
@@ -174,7 +173,7 @@ AS $procedure$
 				
 				
 					insert into account (
-						"create_time", "app_id", "email", "passwd",
+						"created_at", "app_id", "email", "password",
 						"type", "platform", "isban", "lastlogin", "idx", "regip"
 					) values (
 						now(), p_app_id, p_email, md5(p_password),
@@ -193,12 +192,14 @@ AS $procedure$
 		            insert into user_profile 
 		            (
 		                "idx", "nickname", 
-		                "img_url","visible"
+		                "img_url","visible",
+						"created_at", "updated_at"
 		            ) 
 		            values 
 		            (
-		                p_idx, p_nickname, 
-		                p_img_url, true
+		                p_idx, '-', 
+		                'https://www.w3schools.com/w3images/avatar2.png', true,
+						now(), now()
 		            );
 		           
 		           	/* ################################
@@ -209,11 +210,13 @@ AS $procedure$
 					 */
 		           	insert into user_wallet 
 		           	(
-		           		"idx", "remark"
+		           		"idx", "point",
+						"created_at", "updated_at"
 		           	) 
 		           	values 
 		           	(
-		           		p_idx, 'First Create'
+		           		p_idx, 0,
+						now(), now()
 		           	);
 				end;
 			
@@ -277,7 +280,7 @@ AS $procedure$
 						
 						
 							insert into account (
-								"create_time", "app_id", "email", "passwd",
+								"create_time", "app_id", "email", "password",
 								"type", "platform", "isban", "lastlogin", "idx", "regip"
 							) values (
 								now(), p_app_id, p_email, md5(p_email),

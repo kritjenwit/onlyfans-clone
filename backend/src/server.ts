@@ -37,7 +37,7 @@ import { authenRouter } from "./routes/authen";
 */
 const app = express();
 const clusterWorkerSize =
-  ENVIRONMENT === "development" ? 2 : Math.floor(os.cpus().length / 2);
+  ENVIRONMENT === "development" ? 1: Math.floor(os.cpus().length / 2);
 const PORT = env.PORT;
 
 /*
@@ -88,7 +88,12 @@ app.get("/", (req, res) => {
   res.end();
 });
 
-app.use("/authen", authenRouter);
+app.get("/ping", (req, res) => {
+  res.send("pong");
+  res.end();
+});
+
+app.use("/authen", authenRouter); 
 /*
 .####.##....##.####.########.......###....########..########.
 ..##..###...##..##.....##.........##.##...##.....##.##.....##

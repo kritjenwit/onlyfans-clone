@@ -31,12 +31,12 @@ export const buildProcedureQueryByType = (
   if (type === LOGIN_WITH.EMAIL) {
     procName = PROC_ACCOUNT.NAME;
     procType = PROC_ACCOUNT.TYPE.LOGIN;
+  } else if (type == LOGIN_WITH.GOOGLE) {
+    procName = PROC_ACCOUNT.NAME;
+    procType = PROC_ACCOUNT.TYPE.LOGIN_WITH_GOOGLE;
   } else if (type == REGISTER_WITH.EMAIL) {
     procName = PROC_ACCOUNT.NAME;
     procType = PROC_ACCOUNT.TYPE.REGISTER;
-  }else if (type == LOGIN_WITH.GOOGLE) {
-    procName = PROC_ACCOUNT.NAME;
-    procType = PROC_ACCOUNT.TYPE.LOGIN_WITH_GOOGLE;
   }
 
   let jsonValues = {
