@@ -265,10 +265,10 @@ AS $procedure$
 					if p_idx is  null then
 						begin
 							/* ################################
-							 * # @dev: Get IDX from idx_list
-							 * # 
-							 * ################################
-							 */
+							* # @dev: Get IDX from idx_list
+							* # 
+							* ################################
+							*/
 							select idx
 							from idx_list il 
 							limit 1
@@ -280,47 +280,51 @@ AS $procedure$
 						
 						
 							insert into account (
-								"create_time", "app_id", "email", "password",
+								"created_at", "app_id", "email", "password",
 								"type", "platform", "isban", "lastlogin", "idx", "regip"
 							) values (
-								now(), p_app_id, p_email, md5(p_email),
+								now(), p_app_id, p_email, md5(p_password),
 								p_type, p_platform, false, now(), p_idx, p_ip_address
 							)
 							returning id 
-					        into v_acc_id;
-					       
-					       	/* ################################
-							 * # @description: Once when user create a new account, user must has there own profile
-							 * # 				and that profile come from Login API of any application.
-							 * # @dev: To Create Profile
-							 * # 
-							 * ################################
-							 */
-				            insert into user_profile 
-				            (
-				                "idx", "nickname", 
-				                "img_url","visible"
-				            ) 
-				            values 
-				            (
-				                p_idx, p_nickname, 
-				                p_img_url, true
-				            );
-				           
-				           	/* ################################
-							 * # @description: Once when user create a new account, user must has there own wallet
-							 * # @dev: To Create wallet for idx
-							 * # 
-							 * ################################
-							 */
-				           	insert into user_wallet 
-				           	(
-				           		"idx", "remark"
-				           	) 
-				           	values 
-				           	(
-				           		p_idx, 'First Create'
-				           	);
+							into v_acc_id;
+						
+							/* ################################
+							* # @description: Once when user create a new account, user must has there own profile
+							* # 				and that profile come from Login API of any application.
+							* # @dev: To Create Profile
+							* # 
+							* ################################
+							*/
+							insert into user_profile 
+							(
+								"idx", "nickname", 
+								"img_url","visible",
+								"created_at", "updated_at"
+							) 
+							values 
+							(
+								p_idx, '-', 
+								'https://www.w3schools.com/w3images/avatar2.png', true,
+								now(), now()
+							);
+						
+							/* ################################
+							* # @description: Once when user create a new account, user must has there own wallet
+							* # @dev: To Create wallet for idx
+							* # 
+							* ################################
+							*/
+							insert into user_wallet 
+							(
+								"idx", "point",
+								"created_at", "updated_at"
+							) 
+							values 
+							(
+								p_idx, 0,
+								now(), now()
+							);
 						end;
 					end if;
 				

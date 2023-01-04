@@ -13,7 +13,7 @@ import express, { ErrorRequestHandler } from "express";
 import cors from "cors";
 import { sequelize } from "./databases";
 
-import { env, ENVIRONMENT } from "./config";
+import { env } from "./config";
 import { authenRouter } from "./routes/authen";
 
 /*
@@ -36,8 +36,9 @@ import { authenRouter } from "./routes/authen";
 ..######...#######..##....##..######.....##...
 */
 const app = express();
+const ENVIRONMENT = env.ENVIRONMENT || "development";
 const clusterWorkerSize =
-  ENVIRONMENT === "development" ? 1: Math.floor(os.cpus().length / 2);
+  ENVIRONMENT === "development" ? 1 : Math.floor(os.cpus().length / 2);
 const PORT = env.PORT;
 
 /*
@@ -93,7 +94,7 @@ app.get("/ping", (req, res) => {
   res.end();
 });
 
-app.use("/authen", authenRouter); 
+app.use("/authen", authenRouter);
 /*
 .####.##....##.####.########.......###....########..########.
 ..##..###...##..##.....##.........##.##...##.....##.##.....##

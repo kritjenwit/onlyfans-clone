@@ -15,7 +15,7 @@ export interface LoginGoogleInterface {
   app_id: number;
   email: string;
   platform: string;
-
+  password: string;
   type: string;
   ip_address: string;
 }

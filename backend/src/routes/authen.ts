@@ -153,6 +153,7 @@ authenRouter.post("/email/login", async (req, res) => {
 authenRouter.post("/google/login", async (req, res) => {
   let body = req.body as RequestEmailLogin;
   let email = body.email;
+  let password = body.password;
 
   if (!email) {
     res.status(code400.CODE).json({
@@ -170,10 +171,19 @@ authenRouter.post("/google/login", async (req, res) => {
     return;
   }
 
+  if (!password) {
+    res.status(code400.CODE).json({
+      message: code400.MESSAGE_LIST.INVALID.PASSWORD,
+    });
+    res.end();
+    return;
+  }
+
   let loginResult = await user.loginGoogle({
     app_id: APP_ID.MAIN,
     type: LOGIN_TYPE.GOOGLE,
     email: email,
+    password: password,
     platform: DEFAULT_PLATFORM,
     ip_address: req.ip,
   });

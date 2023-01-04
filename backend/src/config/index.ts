@@ -2,7 +2,7 @@ import "dotenv/config";
 
 export const env = process.env;
 
-export const ENVIRONMENT = env.ENVIRONMENT || "development";
+export const ENVIRONMENT = env.NODE_ENV || "development";
 
 export const MAIN_APP_ID = 1;
 export const DEFAULT_TYPE = "i1";
