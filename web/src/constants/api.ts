@@ -1,4 +1,5 @@
-export const BASE_API_URL = "http://localhost:5000/";
+export const BASE_API_URL =
+  process.env.NEXT_PUBLIC_WEBAPI_URL || "http://localhost:5000";
 
 export const API_URL = {
   AUTHEN: {

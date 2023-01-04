@@ -6,18 +6,18 @@ const __setLocalStorage = (key: string, value: object) => {
 };
 
 export const loginEmail = async (loginData: any) => {
-  let data;
   const response = await axios.post(API_URL.AUTHEN.EMAIL.LOGIN, loginData);
-  if ((data = response.data)) {
+  let data = response.data;
+  if (data.code == 1101) {
     __setLocalStorage("user", data.data);
   }
   return data;
 };
 
 export const loginGoogle = async (loginData: any) => {
-  let data;
   const response = await axios.post(API_URL.AUTHEN.GOOGLE.LOGIN, loginData);
-  if ((data = response.data)) {
+  let data = response.data;
+  if (data.code == 1101) {
     __setLocalStorage("user", data.data);
   }
   return data;
@@ -25,14 +25,11 @@ export const loginGoogle = async (loginData: any) => {
 
 export const registerEmail = async (registerData: any) => {
   try {
-    let data;
     const response = await axios.post(
       API_URL.AUTHEN.EMAIL.REGISTER,
       registerData
     );
-    if ((data = response.data)) {
-      __setLocalStorage("user", data.data);
-    }
+    let data = response.data;
     return data;
   } catch (error) {
     console.log(error);

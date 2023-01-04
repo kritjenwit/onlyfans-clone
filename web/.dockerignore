@@ -1,0 +1,5 @@
+node_modules
+.next
+test
+.eslintrc.json
+.env

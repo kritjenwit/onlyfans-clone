@@ -1,8 +1,8 @@
 import { Button } from "primereact/button";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../app/store";
-import { UserState, loginEmail } from "../../../features/users/userSlice";
+import { AppDispatch } from "../../app/store";
+import { UserState, loginEmail } from "../../features/users/userSlice";
 
 interface BtnLoginProps {
   userState: UserState;
@@ -23,16 +23,18 @@ export const BtnLogin: React.FC<BtnLoginProps> = ({
   setFormError,
   alertErrorMsg,
 }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch: AppDispatch = useDispatch();
 
   const doLoginEmail = async (e: React.MouseEvent) => {
     console.log("Click");
     console.log(formLogin.email);
     console.log(formLogin.password);
 
-    e.preventDefault();
+    // e.preventDefault();
 
     const resultAction = await dispatch(loginEmail(formLogin));
+    console.log(resultAction);
+    console.log(alertErrorMsg.current);
     if (alertErrorMsg.current) {
       alertErrorMsg.current.clear();
     }

@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Messages } from "primereact/messages";
 import { useAppSelector } from "./state";
-import { BtnLogin } from "./components/BtnLogin";
-import { BtnLoginGoogle } from "./components/BtnLoginGoogle";
+import { BtnLogin } from "./BtnLogin";
+import { BtnLoginGoogle } from "./BtnLoginGoogle";
+import Link from "next/link";
 
 interface RenderWhenNotLoginProps {}
 
@@ -88,6 +89,14 @@ export const RenderWhenNotLogin: React.FC<RenderWhenNotLoginProps> = ({}) => {
               setFormError={setFormError}
               alertErrorMsg={alertErrorMsg}
             />
+            <div className="flex justify-center mt-2 underline text-slate-400">
+              <Link className="mx-2" href="/register">
+                Register
+              </Link>
+              <Link className="mx-2" href="/forgot-password">
+                Forgot Password?
+              </Link>
+            </div>
           </div>
           <div className="flex flex-auto flex-col mx-8 items-center space-y-2">
             <BtnLoginGoogle

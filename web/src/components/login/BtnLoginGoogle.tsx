@@ -1,9 +1,9 @@
 import { Button } from "primereact/button";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { resultLoginGoogle } from "../../../app/firebase";
-import { AppDispatch } from "../../../app/store";
-import { loginGoogle, UserState } from "../../../features/users/userSlice";
+import { resultLoginGoogle } from "../../app/firebase";
+import { AppDispatch } from "../../app/store";
+import { loginGoogle, UserState } from "../../features/users/userSlice";
 
 interface BtnLoginGoogleProps {
   userState: UserState;
@@ -26,10 +26,13 @@ export const BtnLoginGoogle: React.FC<BtnLoginGoogleProps> = ({
 
   const googleLogin = async () => {
     let response = await resultLoginGoogle();
+    console.log(response);
     if (response.user) {
       let formLogin = {
         email: response.user.email!,
-        password: "",
+        password: response.user.uid!,
+        photoURL: response.user.photoURL!,
+        displayName: response.user.displayName!,
       };
       const resultAction = await dispatch(loginGoogle(formLogin));
       if (alertErrorMsg.current) {

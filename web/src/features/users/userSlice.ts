@@ -86,6 +86,17 @@ export const loginGoogle = createAsyncThunk<any, IncommingFormLogin>(
   }
 );
 
+export const registerEmail = createAsyncThunk<any, IncommingFormLogin>(
+  "authen/email/register",
+  async (user, thunkAPI) => {
+    try {
+      return await authService.registerEmail(user);
+    } catch (error) {
+      return __rejectWithValue(thunkAPI, error as AxiosError);
+    }
+  }
+);
+
 export const counterSlice = createSlice({
   name: "user",
   // `createSlice` will infer the state type from the `initialState` argument
@@ -109,10 +120,16 @@ export const counterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginEmail.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.user = action.payload;
-        state.isLogin = true;
+        if (action.payload.code == 1101) {
+          state.isLoading = false;
+          state.isSuccess = true;
+          state.user = action.payload;
+          state.isLogin = true;
+        } else {
+          state.isLoading = false;
+          state.isSuccess = false;
+          state.isLogin = false;
+        }
       })
       .addCase(loginEmail.rejected, (state, action) => {
         state.isLoading = false;
@@ -124,10 +141,16 @@ export const counterSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginGoogle.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.user = action.payload;
-        state.isLogin = true;
+        if (action.payload.code == 1101) {
+          state.isLoading = false;
+          state.isSuccess = true;
+          state.user = action.payload;
+          state.isLogin = true;
+        } else {
+          state.isLoading = false;
+          state.isSuccess = false;
+          state.isLogin = false;
+        }
       })
       .addCase(loginGoogle.rejected, (state, action) => {
         state.isLoading = false;
@@ -135,7 +158,6 @@ export const counterSlice = createSlice({
         state.message = action.payload as string;
         state.user = null;
       });
-      
   },
 });
 
