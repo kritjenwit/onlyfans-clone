@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAppSelector } from "../app/hooks";
+import { useRouter } from "next/router";
+import { RenderWhenLoggedIn } from "../components/index/RenderWhenLoggedIn";
 
 interface indexProps {}
 
-const index: React.FC<indexProps> = ({}) => {
-  return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1> 
-    </>
-  );
+const Index: React.FC<indexProps> = ({}) => {
+  const userState = useAppSelector((state) => state.user);
+  const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, [userState.isLogin]);
+
+  if (!mounted) {
+    return <div>Loading</div>;
+  }
+  
+  if (!userState.isLogin) {
+    router.push("/login");
+  }
+
+  console.log(userState.user)
+
+  return <RenderWhenLoggedIn />;
 };
-  
-export default index;
-  
+
+export default Index;

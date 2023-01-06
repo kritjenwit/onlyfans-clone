@@ -1,7 +1,8 @@
 import { Messages } from "primereact/messages";
 import React, { useRef, useState } from "react";
-import { useAppSelector } from "../login/state"
+import { useAppSelector } from "../index/state";
 import { BtnRegister } from "./BtnRegister";
+import Link from "next/link";
 
 interface RenderWhenNotLoginProps {}
 
@@ -93,7 +94,7 @@ export const RenderWhenNotLogin: React.FC<RenderWhenNotLoginProps> = ({}) => {
                     Confirm password
                   </label>
                   <input
-                    type="confirm-password"
+                    type="password"
                     name="confirmPassword"
                     id="confirm-password"
                     placeholder="••••••••"
@@ -135,12 +136,12 @@ export const RenderWhenNotLogin: React.FC<RenderWhenNotLoginProps> = ({}) => {
                 />
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    href="/login"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Login here
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>
