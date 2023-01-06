@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Messages } from "primereact/messages";
-import { useAppSelector } from "./state";
+import { useAppSelector } from "../index/state";
 import { BtnLogin } from "./BtnLogin";
 import { BtnLoginGoogle } from "./BtnLoginGoogle";
 import Link from "next/link";

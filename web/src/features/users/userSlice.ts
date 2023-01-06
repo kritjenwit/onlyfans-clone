@@ -15,6 +15,10 @@ export interface UserState {
   user: {
     idx: number;
     email: string;
+    img_url: string;
+    nickname: string;
+    point: number;
+    subscription_price: number;
   } | null;
 }
 
@@ -123,7 +127,7 @@ export const counterSlice = createSlice({
         if (action.payload.code == 1101) {
           state.isLoading = false;
           state.isSuccess = true;
-          state.user = action.payload;
+          state.user = action.payload.data;
           state.isLogin = true;
         } else {
           state.isLoading = false;

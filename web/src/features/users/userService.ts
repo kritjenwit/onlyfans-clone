@@ -6,6 +6,7 @@ const __setLocalStorage = (key: string, value: object) => {
 };
 
 export const loginEmail = async (loginData: any) => {
+  console.log(API_URL)
   const response = await axios.post(API_URL.AUTHEN.EMAIL.LOGIN, loginData);
   let data = response.data;
   if (data.code == 1101) {
