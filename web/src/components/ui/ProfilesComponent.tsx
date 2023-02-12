@@ -15,20 +15,35 @@ export const ProfilesComponent: React.FC<ProfilesComponentProps> = ({}) => {
       icon: "pi-home",
     },
     {
+      name: "Notifications",
+      link: "/notifications",
+      icon: "pi-bell",
+    },
+    {
+      name: "Messages",
+      link: "/messages",
+      icon: "pi-comment",
+    },
+    {
+      name: "Bookmarks",
+      link: "/bookmarks",
+      icon: "pi-comment",
+    },
+    {
       name: "Subscriptions",
       link: "/subscriptions",
       icon: "pi-heart",
     },
     {
       name: "My Profile",
-      link: `/${userState.user?.idx}`,
+      link: `/me`,
       icon: "pi-user",
     },
-    {
-      name: "Logout",
-      link: "/logout",
-      icon: "pi-sign-out",
-    },
+    // {
+    //   name: "Logout",
+    //   link: "/logout",
+    //   icon: "pi-sign-out",
+    // },
   ];
   return (
     <>
@@ -47,7 +62,7 @@ export const ProfilesComponent: React.FC<ProfilesComponentProps> = ({}) => {
               {userState.user?.nickname}
             </div>
             <div className="text-open-dark font-semibold">
-              {userState.user?.idx}
+              IDX: {userState.user?.idx}
             </div>
           </div>
         </div>
@@ -71,6 +86,9 @@ export const ProfilesComponent: React.FC<ProfilesComponentProps> = ({}) => {
                           ? "bg-open-blue text-open-white"
                           : "text-open-dark"
                       }`}
+                      style={{
+                        fontSize: "1.8rem",
+                      }}
                     ></i>
                     <div
                       className={`text-xl font-medium group-hover:text-open-white ${

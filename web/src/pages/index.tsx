@@ -20,9 +20,7 @@ const Index: React.FC<indexProps> = ({}) => {
   if (!userState.isLogin) {
     router.push("/login");
   }
-
-  console.log(userState.user)
-
+  
   return <RenderWhenLoggedIn />;
 };
 
