@@ -7,5 +7,22 @@ pipeline {
       }
     }
 
+    stage('build') {
+      parallel {
+        stage('build web') {
+          steps {
+            sh './build.web.sh'
+          }
+        }
+
+        stage('build API') {
+          steps {
+            sh './build.api.sh'
+          }
+        }
+
+      }
+    }
+
   }
 }
